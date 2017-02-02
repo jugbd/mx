@@ -1,0 +1,61 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+//apply plugin: 'war' // in case you want to build war
+apply plugin: 'org.springframework.boot'
+
+springBoot {
+    executable = true
+}
+
+jar {
+    baseName = 'meetup'
+    version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+    compile('org.springframework.boot:spring-boot-starter-remote-shell')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-cache')
+    compile ('org.springframework.boot:spring-boot-configuration-processor')
+
+    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version:'2.0.10.RELEASE'
+    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version:'2.1.2.RELEASE'
+
+    compile group: 'javax.cache', name: 'cache-api', version:'1.0.0'
+    compile group: 'org.ehcache', name: 'ehcache', version:'3.1.1'
+
+    compile 'org.webjars:jquery:3.1.1'
+    compile 'org.webjars:bootstrap:3.3.7'
+
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('com.h2database:h2')
+    runtime('mysql:mysql-connector-java')
+
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '4.2.0.RELEASE'
+}

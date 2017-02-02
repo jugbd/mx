@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>News</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+
+        <div class="page-header">
+            <h2>Latest news on JUGBD Meetup Group</h2>
+        </div>
+        <div class="commits list-group">
+            <div th:each="meetup : ${meetups}" class="list-group-item">
+                <a th:href="${meetup.link}" class="badge"><h4 class="list-group-item-heading" th:text="${meetup.name}">
+                    JUGBD BD meetup 6.0 </h4></a>
+
+                <p><strong>Description</strong></p>
+                <p class="list-group-item-text" th:utext="${meetup.description}"></p>
+                <p class="list-group-item-text" th:inline="text">Time [[${meetup.time}]]</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="billboard">
+        <div class="container">
+            <h2>Meetup Extended!!!</h2>
+        </div>
+    </section>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Submit a talk to the Mx!</h1>
+            <p>Share your passion</p>
+            <p><a class="btn btn-primary btn-lg" th:href="@{/submit}" role="button">Submit</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Latest News</h2>
+        </div>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Latest scheduled meetups</h3>
+            </div>
+            <div class="panel-body">
+                <div th:each="meetup : ${meetups}" class="list-group-item">
+                    <a th:href="@{/news}"><h3 th:text="${meetup.name}"></h3> </a>
+                    <p class="list-group-item-text" th:text="${'Time: '+  #dates.format(meetup.time, 'dd MMMM yyyy @ hh:mm a')}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
